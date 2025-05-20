@@ -29,13 +29,12 @@ ai-chat-log-summarizer/
 │   └── ...
 ├── requirements.txt
 └── README.md
-
-
+```
 ---
 
 ## Setup (with virtual environment)
 
-1. **Clone the repository**:
+1. **Clone the repository**
 
 ```bash
 git clone https://github.com/sonjoy2074/ai-chat-log-summarizer
