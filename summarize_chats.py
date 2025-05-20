@@ -6,6 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 nltk.download('punkt')
 nltk.download('stopwords')
 
+#Separate messages by speaker
 def process_chat(file_path):
     user_messages = []
     ai_messages = []
@@ -21,11 +22,13 @@ def process_chat(file_path):
             elif line.startswith("AI:"):
                 message = line[len("AI:"):].strip()
                 ai_messages.append(message)
-    
+
+    # Count messages and extract keywords 
     count_user = len(user_messages)
     count_ai = len(ai_messages)
     total_exchanges = min(count_user, count_ai)
 
+    #Keyword Analysis Using TF-IDF and NLTK
     all_messages = user_messages + ai_messages
     combined_text = " ".join(all_messages)
 
@@ -38,7 +41,8 @@ def process_chat(file_path):
     word_score_pairs = list(zip(feature_names, scores))
     top_keywords = sorted(word_score_pairs, key=lambda x: x[1], reverse=True)[:5]
     keywords = [word for word, score in top_keywords]
-
+    
+    #Generate Summary
     first_top_word = keywords[0] if keywords else "unknown topic"
     second_top_word = keywords[1] if len(keywords) > 1 else ""
 
